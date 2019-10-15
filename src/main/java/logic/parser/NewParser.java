@@ -12,12 +12,8 @@ public class NewParser {
      * Used for initial separation of command word and args.
      *
      * @author Justin Chia
-     *
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
-
-
-
 
 
     public static Command parseCommand(String fullCommand) throws DukeException {
@@ -29,7 +25,7 @@ public class NewParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
-        switch(commandWord){
+        switch (commandWord) {
             case HiCommand.COMMAND_WORD:
                 return new HiCommand();
 
