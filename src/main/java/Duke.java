@@ -1,13 +1,14 @@
+import logic.LogicController;
 import members.Member;
 import gui.Window;
-import commands.Command;
+//import commands.Command;
 import tasks.Task;
 import utils.DukeException;
-import utils.Parser;
+//import utils.Parser;
 import utils.Storage;
 import utils.Reminder;
-import core.Ui;
-
+//import core.Ui;
+import gui.UiController;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -30,6 +31,12 @@ public class Duke {
 
     private ArrayList<Member> members;
 
+    /**
+     * main components of application
+     * */
+    protected LogicController logicController;
+    protected UiController uiController;
+
 
     /**
      * A constructor which applies the file path to load previous data
@@ -41,6 +48,8 @@ public class Duke {
         storage = new Storage(taskFilePath, memberFilePath);
         tasks = storage.loadTaskList();
         members = storage.loadMemberList();
+        logicController = new LogicController(tasks, storage);
+        uiController = new UiController(logicController);
     }
 
     /**
@@ -48,19 +57,21 @@ public class Duke {
      */
     public void run() {
         new Window().newForm();
-        Ui.welcome();
+        uiController.welcome();
         Reminder.checkReminders(tasks);
         boolean isExit = false;
         Scanner in = new Scanner(System.in);
         while (!isExit) {
-            try {
-                String fullCommand = Ui.readLine(in);
-                Command c = Parser.commandLine(fullCommand);
-                c.execute(tasks, members, storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                Ui.print(e.getMessage());
-            }
+//            try {
+                uiController.readCommand(in);
+//                String fullCommand = Ui.readLine(in);
+//                Command c = Parser.commandLine(fullCommand);
+//                c.execute(tasks, members, storage);
+                isExit = uiController.isExit();
+//            }
+//            } catch (DukeException e) {
+//                uiController.print(e.getMessage());
+//            }
         }
     }
 
