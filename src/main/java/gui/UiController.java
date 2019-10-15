@@ -5,6 +5,7 @@ import logic.LogicController;
 import java.util.Scanner;
 
 import logic.command.CommandOutput;
+import utils.DukeException;
 
 public class UiController {
     private static final String horizontalLine = "\t____________________________________________________________";
@@ -24,7 +25,7 @@ public class UiController {
      * @return the String read
      */
 
-    public void readCommand(Scanner in){
+    public void readCommand(Scanner in) throws DukeException {
         String fullCommand = in.nextLine();
         CommandOutput commandOutput = logicController.execute(fullCommand);
         print(commandOutput.getOutputToUser());

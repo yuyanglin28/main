@@ -20,7 +20,7 @@ public class NewParser {
 
 
 
-    public Command parseCommand(String fullCommand) throws DukeException {
+    public static Command parseCommand(String fullCommand) throws DukeException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(fullCommand.trim());
         if (!matcher.matches()) {
             throw new DukeException("Message is invalid");

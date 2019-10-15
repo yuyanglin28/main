@@ -55,7 +55,7 @@ public class Duke {
     /**
      * main running structure of Duke.
      */
-    public void run() {
+    public void run() throws DukeException {
         new Window().newForm();
         uiController.welcome();
         Reminder.checkReminders(tasks);
@@ -80,7 +80,7 @@ public class Duke {
      *
      * @param args command line arguments, not used here
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DukeException {
         new Duke("data/tasks.txt", "data/members.txt").run();
     }
 }
