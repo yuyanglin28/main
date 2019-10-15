@@ -26,11 +26,10 @@ public class NewParser {
         final String arguments = matcher.group("arguments");
 
         switch (commandWord) {
-            case HiCommand.COMMAND_WORD:
-                return new HiCommand();
-
-            default:
-                throw new DukeException("Command word not found");
+        case HiCommand.COMMAND_WORD:
+            return new HiCommand();
+        default:
+            throw new DukeException("Command word not found");
         }
 
     }
