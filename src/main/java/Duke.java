@@ -9,6 +9,7 @@ import utils.Storage;
 import utils.Reminder;
 //import core.Ui;
 import gui.UiController;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -33,7 +34,7 @@ public class Duke {
 
     /**
      * main components of application
-     * */
+     */
     protected LogicController logicController;
     protected UiController uiController;
 
@@ -41,7 +42,7 @@ public class Duke {
     /**
      * A constructor which applies the file path to load previous data
      *
-     * @param taskFilePath the file path of task list
+     * @param taskFilePath   the file path of task list
      * @param memberFilePath the file path of member list
      */
     public Duke(String taskFilePath, String memberFilePath) {
@@ -63,11 +64,11 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         while (!isExit) {
 //            try {
-                uiController.readCommand(in);
+            uiController.readCommand(in);
 //                String fullCommand = Ui.readLine(in);
 //                Command c = Parser.commandLine(fullCommand);
 //                c.execute(tasks, members, storage);
-                isExit = uiController.isExit();
+            isExit = uiController.isExit();
 //            }
 //            } catch (DukeException e) {
 //                uiController.print(e.getMessage());
