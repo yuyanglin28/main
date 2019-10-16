@@ -1,6 +1,7 @@
 package logic.command;
 
 
+import model.Model;
 import tasks.Task;
 
 /**
@@ -10,12 +11,11 @@ public abstract class Command {
 
 
     /**
-     * Executes the command and returns the output message. As of now, we have no model, hence this abstract class is
-     * not used. Abstract class of command can only be used when model is done
+     * Executes the command and returns the output message. Every command MUST be passed a model
      *
      * @return feedback message of the operation result for display
      */
-    public abstract CommandOutput execute();
+    public abstract CommandOutput execute(Model model);
 
 
 }

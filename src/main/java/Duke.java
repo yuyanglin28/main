@@ -2,6 +2,8 @@ import logic.LogicController;
 import members.Member;
 import gui.Window;
 //import commands.Command;
+import model.Model;
+import model.ModelController;
 import tasks.Task;
 import utils.DukeException;
 //import utils.Parser;
@@ -37,6 +39,7 @@ public class Duke {
      */
     protected LogicController logicController;
     protected UiController uiController;
+    protected Model modelController;
 
 
     /**
@@ -46,10 +49,11 @@ public class Duke {
      * @param memberFilePath the file path of member list
      */
     public Duke(String taskFilePath, String memberFilePath) {
-        storage = new Storage(taskFilePath, memberFilePath);
-        tasks = storage.loadTaskList();
-        members = storage.loadMemberList();
-        logicController = new LogicController(tasks, storage);
+//        storage = new Storage(taskFilePath, memberFilePath);
+//        tasks = storage.loadTaskList();
+//        members = storage.loadMemberList();
+        modelController = new ModelController();
+        logicController = new LogicController(modelController);
         uiController = new UiController(logicController);
     }
 

@@ -14,6 +14,7 @@ public class NewParser {
      * @author Justin Chia
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private static final String ADD_COMMAND_WORD = "add";
 
 
     public static Command parseCommand(String fullCommand) throws DukeException {
@@ -28,6 +29,10 @@ public class NewParser {
         switch (commandWord) {
         case HiCommand.COMMAND_WORD:
             return new HiCommand();
+
+        case ADD_COMMAND_WORD:
+            return AddParser.parseAddCommand(arguments);
+
         default:
             throw new DukeException("Command word not found");
         }

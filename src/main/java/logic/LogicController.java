@@ -3,6 +3,7 @@ package logic;
 import logic.command.Command;
 import logic.command.CommandOutput;
 import logic.parser.NewParser;
+import model.Model;
 import tasks.Task;
 import utils.DukeException;
 import utils.Storage;
@@ -13,18 +14,17 @@ public class LogicController {
 
     protected ArrayList<Task> tasks;
     protected Storage storage;
-    private NewParser parser;
+    protected Model model;
 
 
-    public LogicController(ArrayList<Task> tasks, Storage storage) {
-        this.tasks = tasks;
-        this.storage = storage;
+    public LogicController(Model model) {
+        this.model = model;
     }
 
     public CommandOutput execute(String fullCommand) throws DukeException {
         CommandOutput commandResult;
         Command command = NewParser.parseCommand(fullCommand);
-        commandResult = command.execute();
+        commandResult = command.execute(model);
         return commandResult;
     }
 
