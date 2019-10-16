@@ -57,9 +57,9 @@ public class Duke {
      * main running structure of Duke.
      */
     public void run() throws DukeException {
-        new Window().newForm();
+        //Window window = new Window();
         uiController.welcome();
-        Reminder.checkReminders(tasks);
+        //Reminder.checkReminders(tasks);
         boolean isExit = false;
         Scanner in = new Scanner(System.in);
         while (!isExit) {
