@@ -5,6 +5,7 @@ import common.DukeException;
 import logic.command.SnoozeCommand;
 import logic.parser.schedule.ScheduleCommandParser;
 
+import javax.swing.text.EditorKit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,6 +25,7 @@ public class NewParser {
     public static final String FIND_COMMAND_WORD = "FIND";
     public static final String BYE_COMMAND_WORD = "BYE";
     public static final String SCHEDULE_COMMAND_WORD = "SCHEDULE";
+    public static final String EDIT_COMMAND_WORD = "EDIT";
 
     //@@author JustinChia1997
 
@@ -47,7 +49,7 @@ public class NewParser {
 
         String[] dict = {
             "ADD", "LIST", "DONE", "DELETE", "HELP", "FIND", "BYE",
-            "SNOOZE", "SCHEDULE", "CHECK", "LINK", "UNLINK"
+            "SNOOZE", "SCHEDULE", "CHECK", "LINK", "UNLINK", "EDIT"
         };
 
         commandWord = SpellingErrorCorrector.commandCorrector(dict, commandWord);
@@ -75,6 +77,8 @@ public class NewParser {
             return ByeCommandParser.parseByeCommand(arguments);
         case SCHEDULE_COMMAND_WORD:
             return ScheduleCommandParser.parseScheduleCommand(arguments);
+        case EDIT_COMMAND_WORD:
+            return EditCommandParser.parseEditCommand(arguments);
 
         default:
             throw new DukeException("Command not found");
