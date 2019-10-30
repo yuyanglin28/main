@@ -20,6 +20,7 @@ public class DeleteMemberCommand extends Command {
     public CommandOutput execute(Model model) throws DukeException {
         try {
             if (model.deleteMember(memberName)) {
+                model.save();
                 return new CommandOutput(SUCCESS_MSSAGE + memberName);
             } else {
                 return new CommandOutput(memberName + INVALID_MSSAGE);

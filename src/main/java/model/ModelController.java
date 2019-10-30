@@ -111,47 +111,49 @@ public class ModelController implements Model {
         memberManager.getMemberByName(memberName).deleteTask(memberName);
     }
 
-    @Override
     //@@author yuyanglin28
+    @Override
     public boolean deleteMember(String name) {
         tasksManager.deleteMemberInTasks(name);
         Member toDelete = memberManager.getMemberByName(name);
         if (memberManager.deleteMember(toDelete)) {
-            storage.saveMembers(memberManager.getMemberList());
-            storage.saveTasks(tasksManager.getTaskList());
             return true;
         } else {
             return false;
         }
     }
 
+    //@@author yuyanglin28
     @Override
     public String deleteTask(int taskIndexInList) throws DukeException {
         Task toDelete = tasksManager.deleteTask(taskIndexInList);
         String toDeleteName = tasksManager.getNameByTask(toDelete);
         memberManager.deleteTaskInMembers(toDeleteName);
-        storage.saveMembers(memberManager.getMemberList());
-        storage.saveTasks(tasksManager.getTaskList());
         return toDeleteName;
     }
 
+    //@@author yuyanglin28
     public String getTasksByKeyword(String keyword) {
         return tasksManager.getTasksByKeyword(keyword);
     }
 
+    ////@@author yuyanglin28
     public String scheduleTeamAll() {
         return tasksManager.scheduleTeamAll();
     }
 
+    ////@@author yuyanglin28
     public String scheduleTeamTodo() {
         return tasksManager.scheduleTeamTodo();
     }
 
+    //@@author yuyanglin28
     public String scheduleMemberAll(String memberName) {
         ArrayList<String> tasksName = memberManager.getTaskListOfMember(memberName);
         return tasksManager.scheduleAllTasks(tasksName);
     }
 
+    //@@author yuyanglin28
     public String scheduleMemberTodo(String memberName) {
         ArrayList<String> tasksName = memberManager.getTaskListOfMember(memberName);
         return tasksManager.scheduleTodoTasks(tasksName);

@@ -21,6 +21,7 @@ public class DeleteTaskCommand extends Command {
                 return new CommandOutput(INVALID_MSSAGE);
             } else {
                 taskName = model.deleteTask(taskIndexInList);
+                model.save();
                 return new CommandOutput(SUCCESS_MSSAGE + taskName);
             }
         } catch (Exception e) {
